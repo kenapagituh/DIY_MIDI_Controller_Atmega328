@@ -5,6 +5,7 @@
 */
 
 //=======================================================================================
+
 // #include <MIDI.h>
 // MIDI_CREATE_DEFAULT_INSTANCE();
 
@@ -36,6 +37,7 @@ byte varThreshold = 10;
 boolean potMoving = true;
 unsigned long PTime[JumlahPotensiometer] = {0};
 unsigned long timer[JumlahPotensiometer] = {0};
+
 //=======================================================================================
 
 // MIDI
