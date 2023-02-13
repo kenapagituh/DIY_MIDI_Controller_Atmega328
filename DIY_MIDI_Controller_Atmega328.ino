@@ -9,7 +9,7 @@
 // MIDI_CREATE_DEFAULT_INSTANCE();
 
 //=======================================================================================
-// TOMBOL
+// Tombol
 const byte JumlahTombol = 3;
 const byte PinTombol[JumlahTombol] = {2, 3, 4};
 
@@ -20,7 +20,7 @@ unsigned long lastDebounceTime[JumlahTombol] = {0};
 unsigned long debounceDelay = 50;
 
 //=======================================================================================
-// POTENTIOMETERS
+// Potensiometer
 const byte JumlahPotensiometer = 2;
 const byte PinPotensiometer[JumlahPotensiometer] = {A0, A1};
 
@@ -63,7 +63,7 @@ void loop() {
 
 //=======================================================================================
 
-// BUTTONS
+// Tombol
 void tombol() {
 
   for (int i = 0; i < JumlahTombol; i++) {
