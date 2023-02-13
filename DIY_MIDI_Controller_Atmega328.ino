@@ -1,3 +1,13 @@
+/*
+  Based on Sketch built by Gustavo Silveira (aka Music Nerd)
+  Modified by Dolce Wang
+
+  This code is only for Arduinos that use ATmega328 (like Uno, Mega, Nano, Beetle...)
+
+*/
+
+
+
 // #include <MIDI.h>
 // MIDI_CREATE_DEFAULT_INSTANCE();
 
