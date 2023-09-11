@@ -1,4 +1,4 @@
-Berdasarkan sketch dan tutorial oleh Gustavo Silveira aka Music Nerd ( https://www.youtube.com/@NerdMusician )
+Berdasarkan sketch dan tutorial oleh Gustavo Silveira aka Nerd Musician ( https://www.youtube.com/@NerdMusician )
 
 Dimodifikasi ke bahasa Indonesia oleh kenapagituh
 
