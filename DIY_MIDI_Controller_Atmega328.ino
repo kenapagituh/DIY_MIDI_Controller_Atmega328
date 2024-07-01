@@ -12,6 +12,8 @@
 MIDI_CREATE_DEFAULT_INSTANCE();
 #endif
 
+#include <ResponsiveAnalogRead.h>
+
 //=======================================================================================
 // Tombol dan Potensiometer. Silahkan ubah disini.
 const byte JumlahTombol = 3;                                    // Tombolnya ada berapa?
@@ -41,6 +43,10 @@ boolean potMoving = true;
 unsigned long PTime[JumlahPotensiometer] = { 0 };
 unsigned long timer[JumlahPotensiometer] = { 0 };
 
+int potReading[JumlahPotensiometer] = { 0 };
+float snapMultiplier = 0.01;
+ResponsiveAnalogRead responsivePot[JumlahPotensiometer] = {};
+
 //=======================================================================================
 // MIDI
 byte midiCh = 1;
@@ -54,6 +60,10 @@ void setup() {
   Serial.begin(115200);
   for (int i = 0; i < JumlahTombol; i++) {
     pinMode(PinTombol[i], INPUT_PULLUP);
+  }
+  for (int i = 0; i < JumlahPotensiometer; i++) {
+    responsivePot[i] = ResponsiveAnalogRead(0, true, snapMultiplier);
+    responsivePot[i].setAnalogResolution(1023);
   }
 }
 
@@ -97,7 +107,9 @@ void tombol() {
 // Potensiometer
 void potensiometer() {
   for (int i = 0; i < JumlahPotensiometer; i++) {
-    potCState[i] = analogRead(PinPotensiometer[i]);
+    potReading[i] = analogRead(PinPotensiometer[i]);
+    responsivePot[i].update(potReading[i]);
+    potCState[i] = responsivePot[i].getValue();
     midiCState[i] = map(potCState[i], 0, 1023, 0, 127);
     potVar = abs(potCState[i] - potPState[i]);
     if (potVar > varThreshold) {
@@ -116,7 +128,12 @@ void potensiometer() {
 #elif off
         Serial.print("Pot: ");
         Serial.print(i);
-        Serial.print(" ");
+        Serial.print(" | ");
+        Serial.print("raw: ");
+        Serial.print(potReading[i]);
+        Serial.print(" - responsiveRead: ");
+        Serial.print(potCState[i]);
+        Serial.print(" - midiCState: ");
         Serial.println(midiCState[i]);
 #endif
         potPState[i] = potCState[i];
